@@ -2,8 +2,19 @@ import Ember from 'ember';
 import UserValidations from 'dummy/validations/user';
 import { task, timeout } from 'ember-concurrency';
 
+import Changeset from 'ember-changeset';
+import lookupValidator from 'ember-changeset-validations';
+
 export default Ember.Controller.extend({
   UserValidations,
+
+  init() {
+    this._super(...arguments);
+    const changeset = new Changeset(this.store.createRecord('user'), lookupValidator(this.UserValidations), this.UserValidations, {
+      skipValidate: true
+    });
+    this.set('changeset', changeset);
+  },
 
   colors: [
     { name: 'Red', color: 'red' },
