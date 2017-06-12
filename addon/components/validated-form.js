@@ -14,7 +14,10 @@ export default Ember.Component.extend({
 
   init() {
     this._super(...arguments);
-    if (this.get('model') && this.get('model').validate) {
+    if (this.get('validateOnInit') !== false){
+      this.set('validateOnInit', true);
+    }
+    if (this.get('model') && this.get('model').validate && this.get('validateOnInit')) {
       this.get('model').validate();
     }
 
