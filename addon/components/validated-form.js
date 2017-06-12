@@ -40,6 +40,13 @@ export default Ember.Component.extend({
     return this.get(`config.label.${type}`);
   },
 
+  formId: Ember.computed('form-id', function () {
+    const formId = this.get('form-id')
+      ? this.get('form-id')
+      : '';
+    return formId;
+  }),
+
   submitClass: Ember.computed('config', function() {
     return this.get(`config.css.submit`) || this.get('config.css.button');
   }),

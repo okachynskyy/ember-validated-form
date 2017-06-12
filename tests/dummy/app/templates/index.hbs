@@ -1,6 +1,7 @@
 {{#validated-form
   on-submit = submit
   model     = (changeset model UserValidations)
+  form-id = "user-form"
   as |f|}}
 
   {{f.input label="First name" name="firstName" required=true}}
